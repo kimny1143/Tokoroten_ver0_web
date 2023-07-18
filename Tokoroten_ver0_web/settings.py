@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-!@k(ub=idb^%pv5m3k@*rmif1=#2q(czz=!5f=vhi=b7e4&0dx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['centering-cable-393206.uc.r.appspot.com','0.0.0.0', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['centering-cable-393206.uc.r.appspot.com','0.0.0.0', 'localhost', '127.0.0.1','10eb-35-200-0-247.ngrok-free.app']
 
 
 # Application definition
