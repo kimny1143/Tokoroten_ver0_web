@@ -37,7 +37,7 @@ def index(request):
 
     return render(request, 'index.html')
 
-def delete_files(request):
+def delete_file(request):
     media_dir = settings.MEDIA_ROOT
     for filename in os.listdir(media_dir):
         file_path = os.path.join(media_dir, filename)
