@@ -1,0 +1,20 @@
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="file-input">Select files:</label>
+    <input type="file" id="file-input" name="file-input" multiple>
+    <br>
+    <label for="sources">Sources:</label>
+    <input type="checkbox" id="vocals" name="sources" value="vocals">
+    <label for="vocals">Vocals</label>
+    <input type="checkbox" id="drums" name="sources" value="drums">
+    <label for="drums">Drums</label>
+    <input type="checkbox" id="bass" name="sources" value="bass">
+    <label for="bass">Bass</label>
+    <input type="checkbox" id="other" name="sources" value="other">
+    <label for="other">Other</label>
+    <input type="submit" value="Run">
+</form>
+{% for file in output_files %}
+    <a href="{{ MEDIA_URL }}{{ file }}" download>Download {{ file }}</a>
+    <br>
+{% endfor %}    
