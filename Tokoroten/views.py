@@ -1,8 +1,8 @@
-from django.shortcuts import render
-from django.http import FileResponse
+import os
+import shutil
+from django.shortcuts import render, redirect
 from .directory_handler import process_directory
 from django.conf import settings
-import os
 
 def index(request):
     if request.method == 'POST':
@@ -32,8 +32,21 @@ def index(request):
             relative_output_path = os.path.relpath(output_path, settings.MEDIA_ROOT)  # Get the relative path
             output_files.append(relative_output_path)
 
-
         # Pass the processed files to the template
         return render(request, 'index.html', {'output_files': output_files})
 
     return render(request, 'index.html')
+
+def delete_files(request):
+    media_dir = settings.MEDIA_ROOT
+    for filename in os.listdir(media_dir):
+        file_path = os.path.join(media_dir, filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)
+        except Exception as e:
+            print('Failed to delete %s. Reason: %s' % (file_path, e))
+
+    return redirect('index')  # Redirect to index view

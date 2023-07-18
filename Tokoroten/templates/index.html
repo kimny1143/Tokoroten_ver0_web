@@ -13,6 +13,11 @@
     <input type="checkbox" id="other" name="sources" value="other">
     <label for="other">Other</label>
     <input type="submit" value="Run">
+    
+</form>
+<form method="POST" action="{% url 'delete_file' file.id %}">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
 </form>
 {% for file in output_files %}
     <a href="{{ MEDIA_URL }}{{ file }}" download>Download {{ file }}</a>
